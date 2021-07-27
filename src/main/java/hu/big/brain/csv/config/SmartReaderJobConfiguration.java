@@ -17,17 +17,9 @@ import org.springframework.context.annotation.Configuration;
 @EnableBatchProcessing
 public class SmartReaderJobConfiguration {
 
-    public JobBuilderFactory jobBuilderFactory;
-
-    public StepBuilderFactory stepBuilderFactory;
-
-    public SmartReaderJobConfiguration(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory) {
-        this.jobBuilderFactory = jobBuilderFactory;
-        this.stepBuilderFactory = stepBuilderFactory;
-    }
-
     @Bean
-    public Job importUserJob(Step step) {
+    public Job importUserJob(JobBuilderFactory jobBuilderFactory,
+                             Step step) {
         return jobBuilderFactory.get("smart-load-csv")
                 .incrementer(new RunIdIncrementer())
                 .flow(step)
@@ -36,7 +28,8 @@ public class SmartReaderJobConfiguration {
     }
 
     @Bean
-    public Step step(ItemReader<Person> reader,
+    public Step step(StepBuilderFactory stepBuilderFactory,
+                     ItemReader<Person> reader,
                      ItemProcessor<Person, Person> processor,
                      JdbcBatchItemWriter<Person> writer) {
         return stepBuilderFactory.get("smart-load")

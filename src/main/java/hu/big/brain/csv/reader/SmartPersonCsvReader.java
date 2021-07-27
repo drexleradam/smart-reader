@@ -3,9 +3,7 @@ package hu.big.brain.csv.reader;
 import hu.big.brain.csv.model.Person;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
-import org.springframework.batch.item.file.separator.SimpleRecordSeparatorPolicy;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.PathResource;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +19,7 @@ public class SmartPersonCsvReader extends FlatFileItemReader<Person> {
         mapper.setFieldSetMapper(new SmartPersonFieldSetter());
         DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
         tokenizer.setDelimiter("\t");
-        tokenizer.setNames("first_name","last_name","age");
+        tokenizer.setNames("first_name", "last_name", "age");
         mapper.setLineTokenizer(tokenizer);
         this.setLineMapper(mapper);
     }
