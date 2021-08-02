@@ -7,6 +7,7 @@
 - postgres
 - lombok
 - flyway
+- docker
 
 ## Init environment
 
