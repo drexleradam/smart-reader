@@ -8,4 +8,4 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: 1234
-fileName: feladat_1.csv
+fileName: mock_data.csv

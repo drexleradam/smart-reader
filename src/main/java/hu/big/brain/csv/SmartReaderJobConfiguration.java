@@ -17,10 +17,12 @@ public class SmartReaderJobConfiguration {
     private final JobBuilderFactory jobBuilderFactory;
 
     @Bean
-    public Job smartReaderJob(Step smartReaderStoreStep) {
+    public Job smartReaderJob(Step smartMockGenerateStep,
+                              Step smartReaderStoreStep) {
         return jobBuilderFactory.get("smart-load-table-to-table")
                 .incrementer(new RunIdIncrementer())
-                .start(smartReaderStoreStep)
+                .start(smartMockGenerateStep)
+//                .next(smartReaderStoreStep)
                 .build();
     }
 
