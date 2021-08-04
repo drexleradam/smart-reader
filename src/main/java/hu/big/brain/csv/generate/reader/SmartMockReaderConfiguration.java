@@ -21,12 +21,9 @@ public class SmartMockReaderConfiguration {
         JdbcPagingItemReaderBuilder<Person> builder = new JdbcPagingItemReaderBuilder<Person>()
                 .name("smart-mock-data-reader")
                 .rowMapper(BeanPropertyRowMapper.newInstance(Person.class))
-                .selectClause("first_name,last_name,age")
+                .selectClause("id,first_name,last_name,age")
                 .fromClause("smart_mock_data")
                 .sortKeys(Collections.singletonMap("id", Order.ASCENDING))
-                .fetchSize(100)
-                .pageSize(100)
-                .saveState(false)
                 .dataSource(dataSource);
         return builder.build();
     }
