@@ -5,7 +5,12 @@ spring:
     jdbc:
       initialize-schema: always
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5433/postgres
     username: postgres
     password: 1234
 fileName: mock_data.csv
+dump-datasource:
+  url: jdbc:postgresql://localhost:5434/postgres
+  username: postgres
+  password: 1234
+dump-data-file-name: dump_data.csv

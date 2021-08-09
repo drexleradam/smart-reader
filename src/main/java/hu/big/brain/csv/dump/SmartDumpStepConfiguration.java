@@ -1,4 +1,4 @@
-package hu.big.brain.csv.generate;
+package hu.big.brain.csv.dump;
 
 import hu.big.brain.csv.model.Person;
 import lombok.RequiredArgsConstructor;
@@ -12,14 +12,14 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class SmartMockGenerateStepConfiguration {
+public class SmartDumpStepConfiguration {
 
     private final StepBuilderFactory stepBuilderFactory;
 
     @Bean
-    public Step smartMockGenerateStep(@Qualifier("buildPagingItemReader") JdbcPagingItemReader<Person> pagingItemReader,
-                                      @Qualifier("buildSmartMockWriter") FlatFileItemWriter<Person> writer) {
-        return stepBuilderFactory.get("smart-generate")
+    public Step smartReaderDumpStep(@Qualifier("buildDumpPagingItemReader") JdbcPagingItemReader<Person> pagingItemReader,
+                                     @Qualifier("buildSmartDumpWriter") FlatFileItemWriter<Person> writer) {
+        return stepBuilderFactory.get("smart-dump")
                 .<Person, Person>chunk(1)
                 .reader(pagingItemReader)
                 .writer(writer)
