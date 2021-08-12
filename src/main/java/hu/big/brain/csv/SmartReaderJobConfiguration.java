@@ -18,15 +18,17 @@ public class SmartReaderJobConfiguration {
 
     @Bean
     public Job smartReaderJob(Step smartReaderDumpStep,
+                              Step smartLoadStep,
                               Step smartMockGenerateStep,
                               Step smartReaderStoreStep,
                               Step smartCleanStep) {
         return jobBuilderFactory.get("smart-load-table-to-table")
                 .incrementer(new RunIdIncrementer())
                 .start(smartReaderDumpStep)
-//                .start(smartMockGenerateStep)
-//                .next(smartReaderStoreStep)
-//                .next(smartCleanStep)
+                .next(smartLoadStep)
+                .next(smartMockGenerateStep)
+                .next(smartReaderStoreStep)
+                .next(smartCleanStep)
                 .build();
     }
 
