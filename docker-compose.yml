@@ -8,6 +8,8 @@ services:
     container_name: "smart-postgres"
     ports:
       - "5433:5432"
+    volumes:
+      - .:/tmp
   flyway:
     container_name: "smart-flyway"
     environment:
