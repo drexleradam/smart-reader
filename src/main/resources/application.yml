@@ -14,3 +14,7 @@ dump-datasource:
   username: postgres
   password: 1234
 dump-data-file-name: dump_data.csv
+mockaroo:
+  name: mockaroo
+  url: https://my.api.mockaroo.com
+  key: 63304c70
