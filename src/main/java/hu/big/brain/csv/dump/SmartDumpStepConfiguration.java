@@ -18,7 +18,7 @@ public class SmartDumpStepConfiguration {
 
     @Bean
     public Step smartReaderDumpStep(@Qualifier("buildDumpPagingItemReader") JdbcPagingItemReader<Person> pagingItemReader,
-                                     @Qualifier("buildSmartDumpWriter") FlatFileItemWriter<Person> writer) {
+                                    @Qualifier("buildSmartDumpWriter") FlatFileItemWriter<Person> writer) {
         return stepBuilderFactory.get("smart-dump")
                 .<Person, Person>chunk(1)
                 .reader(pagingItemReader)

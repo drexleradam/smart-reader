@@ -21,7 +21,9 @@ public class SmartReaderJobConfiguration {
                               Step smartLoadStep,
                               Step smartMockGenerateStep,
                               Step smartReaderStoreStep,
-                              Step smartCleanStep) {
+                              Step smartCleanStep,
+                              Step listingStatusSaveStep,
+                              Step marketplaceSaveStep) {
         return jobBuilderFactory.get("smart-load-table-to-table")
                 .incrementer(new RunIdIncrementer())
                 .start(smartReaderDumpStep)
@@ -29,6 +31,8 @@ public class SmartReaderJobConfiguration {
                 .next(smartMockGenerateStep)
                 .next(smartReaderStoreStep)
                 .next(smartCleanStep)
+                .next(listingStatusSaveStep)
+                .next(marketplaceSaveStep)
                 .build();
     }
 

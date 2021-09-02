@@ -2,6 +2,7 @@ package hu.big.brain.csv.client;
 
 import feign.Headers;
 import hu.big.brain.csv.apilistingstatus.model.ListingStatus;
+import hu.big.brain.csv.apimarketplace.model.Marketplace;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,6 @@ public interface MockarooClient {
 
     @Headers("Content-Type: application/json")
     @GetMapping(value = "/marketplace")
-    List<String> getMarketplace(@RequestParam String key);
+    List<Marketplace> getMarketplace(@RequestParam String key);
 
 }
