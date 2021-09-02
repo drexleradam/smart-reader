@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ListingStatus {
-    private Long id;
+    private int id;
     @JsonAlias("status_name")
-    private String statusName;
+    private String name;
 }

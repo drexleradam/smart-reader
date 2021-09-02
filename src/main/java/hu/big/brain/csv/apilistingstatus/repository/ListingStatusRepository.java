@@ -13,7 +13,7 @@ public class ListingStatusRepository {
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public void save(ListingStatus listingStatus) {
-        jdbcTemplate.update("insert into smart_listing_status (id, status_name) values (:id, :statusName) on conflict do nothing ", new BeanPropertySqlParameterSource(listingStatus));
+        jdbcTemplate.update("insert into smart_listing_status (id, status_name) values (:id, :name) on conflict do nothing ", new BeanPropertySqlParameterSource(listingStatus));
     }
 
 }
