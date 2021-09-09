@@ -31,6 +31,8 @@ services:
     container_name: "smart-postgres-remote"
     ports:
       - "5434:5432"
+    volumes:
+      - ./.:/tmp
   flyway-remote:
     container_name: "smart-flyway-remote"
     environment:
@@ -44,3 +46,11 @@ services:
       - ./flyway-remote/sql:/flyway/sql
     depends_on:
       - postgres-remote
+  ftp-server:
+    container_name: "smart-ftp"
+    image: "onekilo79/ftpd_test:latest"
+    environment:
+      - PUBLICHOST=localhost
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
