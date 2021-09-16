@@ -32,7 +32,7 @@ public class SmartFtpSendTasklet implements Tasklet {
         log.info("Entered local passive mode.");
         FTPFile[] files = client.listFiles();
         log.debug("Found {} files.", files.length);
-        boolean stored = client.storeFile("tmp.txt", new FileInputStream("test.txt"));
+        boolean stored = client.storeFile("tmp.txt", new FileInputStream(dumpPath));
         log.info("Did store file {}", stored);
         boolean loggedOut = client.logout();
         log.info("Is logged out {}", loggedOut);
@@ -46,5 +46,6 @@ public class SmartFtpSendTasklet implements Tasklet {
                 .getJobExecution()
                 .getExecutionContext()
                 .getString("fileName");
+        log.info("file name is {}", dumpPath);
     }
 }

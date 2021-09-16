@@ -42,6 +42,7 @@ public class SmartDumpForFtpTasklet implements Tasklet {
         if (number >= 5) {
             stepExecution.setExitStatus(new ExitStatus("FTP","Need to upload to ftp."));
         }
+        log.info("file name is {}",fileName);
         stepExecution
                 .getJobExecution()
                 .getExecutionContext()

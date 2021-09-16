@@ -17,6 +17,7 @@ public class SmartFtpSendTaskletConfiguration {
         return stepBuilderFactory
                 .get("smart-load")
                 .tasklet(tasklet)
+                .listener(tasklet)
                 .build();
     }
 
