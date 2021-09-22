@@ -14,4 +14,11 @@ public class Person {
     private String firstName;
     private String lastName;
     private int age;
+
+    public Person(Person p) {
+        this.id = p.id;
+        this.firstName = p.firstName;
+        this.lastName = p.lastName;
+        this.age = p.age;
+    }
 }

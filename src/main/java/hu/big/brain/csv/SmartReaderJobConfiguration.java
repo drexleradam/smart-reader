@@ -45,7 +45,6 @@ public class SmartReaderJobConfiguration {
                 .next(smartLoadStep)
                 .next(smartMockGenerateStep)
                 .next(smartReaderStoreStep)
-                .next(smartCleanStep)
                 .next(listingStatusSaveStep)
                 .next(marketplaceSaveStep)
                 .end();

@@ -23,7 +23,6 @@ public class SmartDumpForFtpTasklet implements Tasklet {
     private final DumpForFtpRepository repository;
     private String fileName;
 
-
     @Override
     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
         fileName = generateDumpPath();
@@ -37,12 +36,12 @@ public class SmartDumpForFtpTasklet implements Tasklet {
 
     @AfterStep
     public void afterStep(StepExecution stepExecution) {
-        int number = new Random().nextInt(10)+1;
+        int number = 5; // new Random().nextInt(10) + 1;
         log.info("Random number was {}", number);
         if (number >= 5) {
-            stepExecution.setExitStatus(new ExitStatus("FTP","Need to upload to ftp."));
+            stepExecution.setExitStatus(new ExitStatus("FTP", "Need to upload to ftp."));
         }
-        log.info("file name is {}",fileName);
+        log.info("file name is {}", fileName);
         stepExecution
                 .getJobExecution()
                 .getExecutionContext()

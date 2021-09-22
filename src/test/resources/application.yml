@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: '@project.name@'
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
+  datasource:
+    url: jdbc:postgresql://localhost:5433/postgres
+    username: postgres
+    password: 1234
+fileName: mock_data.csv
+dump-datasource:
+  url: jdbc:postgresql://localhost:5434/postgres
+  username: postgres
+  password: 1234
+dump-data-file-name: dump_data.csv
+mockaroo:
+  name: mockaroo
+  url: https://my.api.mockaroo.com
+  key: 63304c70
+
+integrationTest: true

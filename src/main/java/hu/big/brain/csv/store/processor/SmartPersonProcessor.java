@@ -14,8 +14,9 @@ public class SmartPersonProcessor implements ItemProcessor<Person, Person> {
 
     @Override
     public Person process(Person person) {
-        person.setFirstName(generateFirstName(person));
-        return person;
+        Person person1 = new Person(person);
+        person1.setFirstName(generateFirstName(person));
+        return person1;
     }
 
     private String generateFirstName(Person person) {

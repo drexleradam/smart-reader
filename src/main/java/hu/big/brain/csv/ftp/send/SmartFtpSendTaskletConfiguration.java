@@ -15,7 +15,7 @@ public class SmartFtpSendTaskletConfiguration {
     @Bean
     public Step smartFtpSendStep(SmartFtpSendTasklet tasklet) {
         return stepBuilderFactory
-                .get("smart-load")
+                .get("smart-ftp-upload")
                 .tasklet(tasklet)
                 .listener(tasklet)
                 .build();
