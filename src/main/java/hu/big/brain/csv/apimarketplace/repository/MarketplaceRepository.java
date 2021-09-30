@@ -1,6 +1,6 @@
 package hu.big.brain.csv.apimarketplace.repository;
 
-import hu.big.brain.csv.apimarketplace.model.Marketplace;
+import hu.big.brain.model.Marketplace;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

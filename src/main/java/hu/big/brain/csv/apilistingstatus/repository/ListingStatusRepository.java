@@ -1,6 +1,6 @@
 package hu.big.brain.csv.apilistingstatus.repository;
 
-import hu.big.brain.csv.apilistingstatus.model.ListingStatus;
+import hu.big.brain.model.ListingStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

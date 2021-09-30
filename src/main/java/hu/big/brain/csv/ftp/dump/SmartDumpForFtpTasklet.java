@@ -13,7 +13,6 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-import java.util.Random;
 
 @Log4j2
 @Component

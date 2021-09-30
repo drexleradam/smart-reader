@@ -1,14 +1,13 @@
 package hu.big.brain.csv;
 
-import hu.big.brain.csv.apilistingstatus.model.ListingStatus;
-import hu.big.brain.csv.apimarketplace.model.Marketplace;
 import hu.big.brain.csv.config.BatchTestConfig;
 import hu.big.brain.csv.config.DumpDataSourceConfiguration;
 import hu.big.brain.csv.config.PrimaryDataSourceConfiguration;
+import hu.big.brain.model.ListingStatus;
+import hu.big.brain.model.Marketplace;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.ExitStatus;
@@ -27,9 +26,12 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.batch.test.AssertFile.assertFileEquals;
 
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -70,10 +72,8 @@ public class SmartApplicationIntegrationTest {
                 .getString("fileName");
     }
 
-    private void compareFiles(String comparedTo, String actual) throws IOException {
-        ClassPathResource resourceComp = new ClassPathResource(comparedTo);
-        PathResource resourceAct = new PathResource(actual);
-        Assertions.assertEquals(resourceComp.getInputStream().readAllBytes(), resourceAct.getInputStream().readAllBytes());
+    private void compareFiles(String expected, String actual) throws Exception {
+        assertFileEquals(new ClassPathResource(expected), new PathResource(actual));
     }
 
     private void testSmartMarketplaceTable() {
@@ -81,7 +81,7 @@ public class SmartApplicationIntegrationTest {
         List<Marketplace> marketplaceStubs = MarketplaceStub.getMarketplaceStubs();
         log.info(Arrays.toString(marketplaces.toArray()));
         log.info(Arrays.toString(marketplaceStubs.toArray()));
-        Assertions.assertTrue(CollectionUtils.isEqualCollection(marketplaces, marketplaceStubs));
+        assertTrue(CollectionUtils.isEqualCollection(marketplaces, marketplaceStubs));
     }
 
     private void testSmartListingStatusTable() {
@@ -89,23 +89,23 @@ public class SmartApplicationIntegrationTest {
         List<ListingStatus> listingStatusStubs = ListingStatusStub.getListingStatusStubs();
         log.info(Arrays.toString(listingStatuses.toArray()));
         log.info(Arrays.toString(listingStatusStubs.toArray()));
-        Assertions.assertTrue(CollectionUtils.isEqualCollection(listingStatuses, listingStatusStubs));
+        assertTrue(CollectionUtils.isEqualCollection(listingStatuses, listingStatusStubs));
     }
 
     private void testSmartMockDataTableCount() {
-        Assertions.assertEquals(30, integrationTestRepository.getSmartMockDataCount());
+        assertEquals(30, integrationTestRepository.getSmartMockDataCount());
     }
 
     private void testSmartPersonTableCount() {
-        Assertions.assertEquals(30, integrationTestRepository.getSmartPersonCount());
+        assertEquals(30, integrationTestRepository.getSmartPersonCount());
     }
 
     private void runApplication() throws Exception {
         JobParameters jobParameters = jobLauncherTestUtils.getUniqueJobParameters();
         jobExecution = jobLauncherTestUtils.launchJob(jobParameters);
 
-        Assertions.assertEquals(BatchStatus.COMPLETED, jobExecution.getStatus());
-        Assertions.assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
+        assertEquals(BatchStatus.COMPLETED, jobExecution.getStatus());
+        assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
     }
 
 }

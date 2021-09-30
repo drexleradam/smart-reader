@@ -1,8 +1,8 @@
 package hu.big.brain.csv.client;
 
 import feign.Headers;
-import hu.big.brain.csv.apilistingstatus.model.ListingStatus;
-import hu.big.brain.csv.apimarketplace.model.Marketplace;
+import hu.big.brain.model.ListingStatus;
+import hu.big.brain.model.Marketplace;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

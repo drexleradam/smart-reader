@@ -1,7 +1,6 @@
 package hu.big.brain.csv;
 
-import hu.big.brain.csv.apilistingstatus.model.ListingStatus;
-import hu.big.brain.csv.apimarketplace.model.Marketplace;
+import hu.big.brain.model.ListingStatus;
 
 import java.util.ArrayList;
 import java.util.List;

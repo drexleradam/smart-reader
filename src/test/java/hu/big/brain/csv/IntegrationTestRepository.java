@@ -1,7 +1,7 @@
 package hu.big.brain.csv;
 
-import hu.big.brain.csv.apilistingstatus.model.ListingStatus;
-import hu.big.brain.csv.apimarketplace.model.Marketplace;
+import hu.big.brain.model.ListingStatus;
+import hu.big.brain.model.Marketplace;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.EmptySqlParameterSource;
