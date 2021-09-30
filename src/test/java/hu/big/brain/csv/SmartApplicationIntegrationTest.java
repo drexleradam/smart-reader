@@ -59,9 +59,9 @@ public class SmartApplicationIntegrationTest {
         testSmartMockDataTableCount();
         testSmartListingStatusTable();
         testSmartMarketplaceTable();
-        compareDumps("dump_data_test.csv", dumpDataFileName);
-        compareDumps("mock_data_test.csv", mockDataFileName);
-        compareDumps("ftp_dump_test.txt", getFtpDumpFilePath());
+        compareFiles("dump_data_test.csv", dumpDataFileName);
+        compareFiles("mock_data_test.csv", mockDataFileName);
+        compareFiles("ftp_dump_test.txt", getFtpDumpFilePath());
     }
 
     private String getFtpDumpFilePath() {
@@ -70,7 +70,7 @@ public class SmartApplicationIntegrationTest {
                 .getString("fileName");
     }
 
-    private void compareDumps(String comparedTo, String actual) throws IOException {
+    private void compareFiles(String comparedTo, String actual) throws IOException {
         ClassPathResource resourceComp = new ClassPathResource(comparedTo);
         PathResource resourceAct = new PathResource(actual);
         Assertions.assertEquals(resourceComp.getInputStream().readAllBytes(), resourceAct.getInputStream().readAllBytes());
