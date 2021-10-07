@@ -15,18 +15,18 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class ListingStatusSaveTasklet implements Tasklet {
-
-    private final MockarooClient mockarooClient;
-    private final ListingStatusRepository repository;
-
-    @Value("${mockaroo.key}")
-    String key;
-
-    @Override
-    public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) {
-        log.info("requesting api call and saving results ...");
-        mockarooClient.getListingStatus(key).forEach(repository::save);
-        log.info("Done!");
-        return RepeatStatus.FINISHED;
-    }
+	
+	private final MockarooClient mockarooClient;
+	private final ListingStatusRepository repository;
+	
+	@Value("${mockaroo.key}")
+	String key;
+	
+	@Override
+	public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) {
+		log.info("requesting api call and saving results ...");
+		mockarooClient.getListingStatus(key).forEach(repository::save);
+		log.info("Done!");
+		return RepeatStatus.FINISHED;
+	}
 }

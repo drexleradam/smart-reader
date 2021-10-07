@@ -9,16 +9,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class SmartDumpForFtpTaskletConfiguration {
-
-    private final StepBuilderFactory stepBuilderFactory;
-
-    @Bean
-    public Step smartDumpForFtpStep(SmartDumpForFtpTasklet tasklet) {
-        return stepBuilderFactory
-                .get("smart-ftp-dump")
-                .tasklet(tasklet)
-                .listener(tasklet)
-                .build();
-    }
-
+	
+	private final StepBuilderFactory stepBuilderFactory;
+	
+	@Bean
+	public Step smartDumpForFtpStep(SmartDumpForFtpTasklet tasklet) {
+		return stepBuilderFactory
+				.get("smart-ftp-dump")
+				.tasklet(tasklet)
+				.listener(tasklet)
+				.build();
+	}
+	
 }

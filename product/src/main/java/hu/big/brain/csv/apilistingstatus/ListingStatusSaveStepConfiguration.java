@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class ListingStatusSaveStepConfiguration {
-
-    private final StepBuilderFactory stepBuilderFactory;
-
-    @Bean
-    public Step listingStatusSaveStep(ListingStatusSaveTasklet tasklet) {
-        return stepBuilderFactory.get("listing-status-api-save")
-                .tasklet(tasklet)
-                .build();
-    }
-
+	
+	private final StepBuilderFactory stepBuilderFactory;
+	
+	@Bean
+	public Step listingStatusSaveStep(ListingStatusSaveTasklet tasklet) {
+		return stepBuilderFactory.get("listing-status-api-save")
+				.tasklet(tasklet)
+				.build();
+	}
+	
 }

@@ -15,18 +15,17 @@ import java.util.Collections;
 @Configuration
 @RequiredArgsConstructor
 public class SmartMockReaderConfiguration {
-
-    @Bean
-    JdbcPagingItemReader<Person> buildPagingItemReader(DataSource dataSource) {
-        JdbcPagingItemReaderBuilder<Person> builder = new JdbcPagingItemReaderBuilder<Person>()
-                .name("smart-mock-data-reader")
-                .rowMapper(BeanPropertyRowMapper.newInstance(Person.class))
-                .selectClause("id,first_name,last_name,age")
-                .fromClause("smart_mock_data")
-                .sortKeys(Collections.singletonMap("id", Order.ASCENDING))
-                .dataSource(dataSource);
-        return builder.build();
-    }
-
-
+	
+	@Bean
+	JdbcPagingItemReader<Person> buildPagingItemReader(DataSource dataSource) {
+		JdbcPagingItemReaderBuilder<Person> builder = new JdbcPagingItemReaderBuilder<Person>()
+				.name("smart-mock-data-reader")
+				.rowMapper(BeanPropertyRowMapper.newInstance(Person.class))
+				.selectClause("id,first_name,last_name,age")
+				.fromClause("smart_mock_data")
+				.sortKeys(Collections.singletonMap("id", Order.ASCENDING))
+				.dataSource(dataSource);
+		return builder.build();
+	}
+	
 }

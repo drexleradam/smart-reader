@@ -9,13 +9,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class SmartCleanStepConfiguration {
-
-    private final StepBuilderFactory stepBuilderFactory;
-
-    @Bean
-    public Step smartCleanStep(SmartCleanTasklet tasklet) {
-        return stepBuilderFactory.get("smart-clean")
-                .tasklet(tasklet)
-                .build();
-    }
+	
+	private final StepBuilderFactory stepBuilderFactory;
+	
+	@Bean
+	public Step smartCleanStep(SmartCleanTasklet tasklet) {
+		return stepBuilderFactory.get("smart-clean")
+				.tasklet(tasklet)
+				.build();
+	}
 }

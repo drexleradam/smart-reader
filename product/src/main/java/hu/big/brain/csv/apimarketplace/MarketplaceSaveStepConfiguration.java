@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class MarketplaceSaveStepConfiguration {
-
-    private final StepBuilderFactory stepBuilderFactory;
-
-    @Bean
-    public Step marketplaceSaveStep(MarketplaceSaveTasklet tasklet) {
-        return stepBuilderFactory.get("marketplace-api-save")
-                .tasklet(tasklet)
-                .build();
-    }
-
+	
+	private final StepBuilderFactory stepBuilderFactory;
+	
+	@Bean
+	public Step marketplaceSaveStep(MarketplaceSaveTasklet tasklet) {
+		return stepBuilderFactory.get("marketplace-api-save")
+				.tasklet(tasklet)
+				.build();
+	}
+	
 }

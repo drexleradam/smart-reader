@@ -14,26 +14,26 @@ import javax.sql.DataSource;
 
 @Configuration
 public class DumpDataSourceConfiguration {
-
-    @Bean
-    @ConditionalOnProperty("dump-datasource.url")
-    @ConfigurationProperties("dump-datasource")
-    public DataSourceProperties dumpDataSourceProperties() {
-        return new DataSourceProperties();
-    }
-
-    @Bean
-    @ConditionalOnBean(name = "dumpDataSourceProperties")
-    public HikariDataSource dumpDataSource(@Qualifier("dumpDataSourceProperties") DataSourceProperties dumpDataSourceProperties) {
-        return dumpDataSourceProperties
-                .initializeDataSourceBuilder()
-                .type(HikariDataSource.class)
-                .build();
-    }
-
-    @Bean
-    public NamedParameterJdbcTemplate dumpNamedParameterJdbcTemplate(@Qualifier("dumpDataSource") DataSource remoteDataSource) {
-        return new NamedParameterJdbcTemplate(remoteDataSource);
-    }
-
+	
+	@Bean
+	@ConditionalOnProperty("dump-datasource.url")
+	@ConfigurationProperties("dump-datasource")
+	public DataSourceProperties dumpDataSourceProperties() {
+		return new DataSourceProperties();
+	}
+	
+	@Bean
+	@ConditionalOnBean(name = "dumpDataSourceProperties")
+	public HikariDataSource dumpDataSource(@Qualifier("dumpDataSourceProperties") DataSourceProperties dumpDataSourceProperties) {
+		return dumpDataSourceProperties
+				.initializeDataSourceBuilder()
+				.type(HikariDataSource.class)
+				.build();
+	}
+	
+	@Bean
+	public NamedParameterJdbcTemplate dumpNamedParameterJdbcTemplate(@Qualifier("dumpDataSource") DataSource remoteDataSource) {
+		return new NamedParameterJdbcTemplate(remoteDataSource);
+	}
+	
 }

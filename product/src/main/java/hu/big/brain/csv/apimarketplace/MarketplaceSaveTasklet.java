@@ -15,18 +15,18 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class MarketplaceSaveTasklet implements Tasklet {
-
-    private final MockarooClient mockarooClient;
-    private final MarketplaceRepository repository;
-
-    @Value("${mockaroo.key}")
-    String key;
-
-    @Override
-    public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) {
-        log.info("requesting api call and saving results ...");
-        mockarooClient.getMarketplace(key).forEach(repository::save);
-        log.info("Done!");
-        return RepeatStatus.FINISHED;
-    }
+	
+	private final MockarooClient mockarooClient;
+	private final MarketplaceRepository repository;
+	
+	@Value("${mockaroo.key}")
+	String key;
+	
+	@Override
+	public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) {
+		log.info("requesting api call and saving results ...");
+		mockarooClient.getMarketplace(key).forEach(repository::save);
+		log.info("Done!");
+		return RepeatStatus.FINISHED;
+	}
 }

@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BatchTestConfig {
-
-    @Bean
-    public JobLauncherTestUtils jobLauncherTestUtils() {
-        return new JobLauncherTestUtils();
-    }
+	
+	@Bean
+	public JobLauncherTestUtils jobLauncherTestUtils() {
+		return new JobLauncherTestUtils();
+	}
 }

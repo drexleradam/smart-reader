@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 @RequiredArgsConstructor
 public class MarketplaceRepository {
-
-    private final NamedParameterJdbcTemplate jdbcTemplate;
-
-    public void save(Marketplace marketplace) {
-        jdbcTemplate.update("insert into smart_marketplace (id, marketplace_name) values (:id, :name) on conflict do nothing ", new BeanPropertySqlParameterSource(marketplace));
-    }
-
+	
+	private final NamedParameterJdbcTemplate jdbcTemplate;
+	
+	public void save(Marketplace marketplace) {
+		jdbcTemplate.update("insert into smart_marketplace (id, marketplace_name) values (:id, :name) on conflict do nothing ", new BeanPropertySqlParameterSource(marketplace));
+	}
+	
 }

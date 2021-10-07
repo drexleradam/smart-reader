@@ -12,21 +12,21 @@ import org.springframework.core.io.FileSystemResource;
 
 @Configuration
 public class SmartPersonCsvReaderConfiguration {
-
-    @Value("${fileName}")
-    private String fileName;
-
-    @Bean
-    @StepScope
-    public FlatFileItemReader<Person> batchDojoCsvReader() {
-        return new FlatFileItemReaderBuilder<Person>()
-                .name("smart-person-csv-reader")
-                .resource(new FileSystemResource(fileName))
-                .delimited()
-                .delimiter(DelimitedLineTokenizer.DELIMITER_TAB)
-                .names("firstName", "lastName", "age")
-                .targetType(Person.class)
-                .build();
-    }
-
+	
+	@Value("${fileName}")
+	private String fileName;
+	
+	@Bean
+	@StepScope
+	public FlatFileItemReader<Person> batchDojoCsvReader() {
+		return new FlatFileItemReaderBuilder<Person>()
+				.name("smart-person-csv-reader")
+				.resource(new FileSystemResource(fileName))
+				.delimited()
+				.delimiter(DelimitedLineTokenizer.DELIMITER_TAB)
+				.names("firstName", "lastName", "age")
+				.targetType(Person.class)
+				.build();
+	}
+	
 }

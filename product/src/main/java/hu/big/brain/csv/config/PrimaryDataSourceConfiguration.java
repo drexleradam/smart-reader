@@ -13,28 +13,28 @@ import javax.sql.DataSource;
 
 @Configuration
 public class PrimaryDataSourceConfiguration {
-
-    @Bean
-    @Primary
-    @ConfigurationProperties("spring.datasource")
-    public DataSourceProperties dataSourceProperties() {
-        return new DataSourceProperties();
-    }
-
-    @Bean
-    @Primary
-    public HikariDataSource dataSource(DataSourceProperties dumpDataSourceProperties) {
-        return dumpDataSourceProperties
-                .initializeDataSourceBuilder()
-                .type(HikariDataSource.class)
-                .build();
-    }
-
-    @Bean
-    @Primary
-    @ConditionalOnBean(name = "dataSource")
-    public NamedParameterJdbcTemplate remoteNamedParameterJdbcTemplate(DataSource remoteDataSource) {
-        return new NamedParameterJdbcTemplate(remoteDataSource);
-    }
-
+	
+	@Bean
+	@Primary
+	@ConfigurationProperties("spring.datasource")
+	public DataSourceProperties dataSourceProperties() {
+		return new DataSourceProperties();
+	}
+	
+	@Bean
+	@Primary
+	public HikariDataSource dataSource(DataSourceProperties dumpDataSourceProperties) {
+		return dumpDataSourceProperties
+				.initializeDataSourceBuilder()
+				.type(HikariDataSource.class)
+				.build();
+	}
+	
+	@Bean
+	@Primary
+	@ConditionalOnBean(name = "dataSource")
+	public NamedParameterJdbcTemplate remoteNamedParameterJdbcTemplate(DataSource remoteDataSource) {
+		return new NamedParameterJdbcTemplate(remoteDataSource);
+	}
+	
 }

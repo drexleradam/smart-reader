@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SmartFtpClient {
-
-    @Bean
-    public FTPClient ftpClient() {
-        return new FTPClient();
-    }
+	
+	@Bean
+	public FTPClient ftpClient() {
+		return new FTPClient();
+	}
 }

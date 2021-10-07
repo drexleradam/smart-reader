@@ -13,22 +13,22 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class SmartReaderStoreStepConfiguration {
-
-    private final StepBuilderFactory stepBuilderFactory;
-
-    @Bean
-    public Step smartReaderStoreStep(ItemReader<Person> batchDojoCsvReader,
-                                     SmartPersonProcessor processor,
-                                     SmartPersonWriter writer) {
-        return stepBuilderFactory.get("smart-store")
-                .<Person, Person>chunk(1)
-                .reader(batchDojoCsvReader)
-                .processor(processor)
-                .listener(processor)
-                .writer(writer)
-                .faultTolerant()
-                .skipLimit(3)
-                .skip(Exception.class)
-                .build();
-    }
+	
+	private final StepBuilderFactory stepBuilderFactory;
+	
+	@Bean
+	public Step smartReaderStoreStep(ItemReader<Person> batchDojoCsvReader,
+									 SmartPersonProcessor processor,
+									 SmartPersonWriter writer) {
+		return stepBuilderFactory.get("smart-store")
+				.<Person, Person>chunk(1)
+				.reader(batchDojoCsvReader)
+				.processor(processor)
+				.listener(processor)
+				.writer(writer)
+				.faultTolerant()
+				.skipLimit(3)
+				.skip(Exception.class)
+				.build();
+	}
 }

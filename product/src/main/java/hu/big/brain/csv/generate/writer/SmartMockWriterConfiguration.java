@@ -11,19 +11,19 @@ import org.springframework.core.io.FileSystemResource;
 
 @Configuration
 public class SmartMockWriterConfiguration {
-
-    @Value("${fileName}")
-    private String fileName;
-
-    @Bean
-    public FlatFileItemWriter<Person> buildSmartMockWriter() {
-        return new FlatFileItemWriterBuilder<Person>()
-                .name("smart-mock-csv-writer")
-                .resource(new FileSystemResource(fileName))
-                .delimited()
-                .delimiter(DelimitedLineTokenizer.DELIMITER_TAB)
-                .names("firstName", "lastName", "age")
-                .build();
-    }
-
+	
+	@Value("${fileName}")
+	private String fileName;
+	
+	@Bean
+	public FlatFileItemWriter<Person> buildSmartMockWriter() {
+		return new FlatFileItemWriterBuilder<Person>()
+				.name("smart-mock-csv-writer")
+				.resource(new FileSystemResource(fileName))
+				.delimited()
+				.delimiter(DelimitedLineTokenizer.DELIMITER_TAB)
+				.names("firstName", "lastName", "age")
+				.build();
+	}
+	
 }

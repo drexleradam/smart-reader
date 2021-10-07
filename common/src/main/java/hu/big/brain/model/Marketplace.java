@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Marketplace {
-    private int id;
-    @JsonAlias("marketplace_name")
-    private String name;
+	private int id;
+	@JsonAlias("marketplace_name")
+	private String name;
 }

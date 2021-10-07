@@ -13,28 +13,28 @@ import java.io.File;
 @Component
 @Log4j2
 public class SmartCleanTasklet implements Tasklet {
-
-    @Value("${fileName}")
-    private String fileName;
-
-    @Value("${dump-data-file-name}")
-    private String dumpFileName;
-
-    @Override
-    public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) {
-        deleteFileIfExists(fileName);
-        deleteFileIfExists(dumpFileName);
-        return RepeatStatus.FINISHED;
-    }
-
-    private void deleteFileIfExists(String fileName) {
-        File file = new File(fileName);
-        boolean deleted = file.delete();
-        if (!deleted) {
-            log.warn("Could not delete file {}", file.getAbsolutePath());
-        } else {
-            log.info("Deleted file {}", file.getAbsolutePath());
-        }
-    }
-
+	
+	@Value("${fileName}")
+	private String fileName;
+	
+	@Value("${dump-data-file-name}")
+	private String dumpFileName;
+	
+	@Override
+	public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) {
+		deleteFileIfExists(fileName);
+		deleteFileIfExists(dumpFileName);
+		return RepeatStatus.FINISHED;
+	}
+	
+	private void deleteFileIfExists(String fileName) {
+		File file = new File(fileName);
+		boolean deleted = file.delete();
+		if (!deleted) {
+			log.warn("Could not delete file {}", file.getAbsolutePath());
+		} else {
+			log.info("Deleted file {}", file.getAbsolutePath());
+		}
+	}
+	
 }

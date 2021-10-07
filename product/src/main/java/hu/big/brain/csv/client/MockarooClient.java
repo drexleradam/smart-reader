@@ -13,13 +13,13 @@ import java.util.List;
 @FeignClient(name = "${mockaroo.name}", url = "${mockaroo.url}")
 @ConditionalOnProperty("mockaroo.url")
 public interface MockarooClient {
-
-    @Headers("Content-Type: application/json")
-    @GetMapping(value = "/listingStatus")
-    List<ListingStatus> getListingStatus(@RequestParam String key);
-
-    @Headers("Content-Type: application/json")
-    @GetMapping(value = "/marketplace")
-    List<Marketplace> getMarketplace(@RequestParam String key);
-
+	
+	@Headers("Content-Type: application/json")
+	@GetMapping(value = "/listingStatus")
+	List<ListingStatus> getListingStatus(@RequestParam String key);
+	
+	@Headers("Content-Type: application/json")
+	@GetMapping(value = "/marketplace")
+	List<Marketplace> getMarketplace(@RequestParam String key);
+	
 }

@@ -18,34 +18,34 @@ import java.io.FileInputStream;
 @Component
 @RequiredArgsConstructor
 public class SmartFtpSendTasklet implements Tasklet {
-
-    private final FTPClient client;
-    private String dumpPath;
-
-    @Override
-    public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-        log.info("Connecting to ftp server ...");
-        client.connect("localhost", 21);
-        boolean connected = client.login("test", "test");
-        log.info("Is connected {}", connected);
-        client.enterLocalPassiveMode();
-        log.info("Entered local passive mode.");
-        FTPFile[] files = client.listFiles();
-        log.debug("Found {} files.", files.length);
-        boolean stored = client.storeFile("tmp.txt", new FileInputStream(dumpPath));
-        log.info("Did store file {}", stored);
-        boolean loggedOut = client.logout();
-        log.info("Is logged out {}", loggedOut);
-        client.disconnect();
-        return RepeatStatus.FINISHED;
-    }
-
-    @BeforeStep
-    public void beforeStep(StepExecution stepExecution) {
-        dumpPath = stepExecution
-                .getJobExecution()
-                .getExecutionContext()
-                .getString("fileName");
-        log.info("file name is {}", dumpPath);
-    }
+	
+	private final FTPClient client;
+	private String dumpPath;
+	
+	@Override
+	public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
+		log.info("Connecting to ftp server ...");
+		client.connect("localhost", 21);
+		boolean connected = client.login("test", "test");
+		log.info("Is connected {}", connected);
+		client.enterLocalPassiveMode();
+		log.info("Entered local passive mode.");
+		FTPFile[] files = client.listFiles();
+		log.debug("Found {} files.", files.length);
+		boolean stored = client.storeFile("tmp.txt", new FileInputStream(dumpPath));
+		log.info("Did store file {}", stored);
+		boolean loggedOut = client.logout();
+		log.info("Is logged out {}", loggedOut);
+		client.disconnect();
+		return RepeatStatus.FINISHED;
+	}
+	
+	@BeforeStep
+	public void beforeStep(StepExecution stepExecution) {
+		dumpPath = stepExecution
+				.getJobExecution()
+				.getExecutionContext()
+				.getString("fileName");
+		log.info("file name is {}", dumpPath);
+	}
 }

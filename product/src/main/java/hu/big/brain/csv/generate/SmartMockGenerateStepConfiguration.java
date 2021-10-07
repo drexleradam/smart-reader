@@ -13,19 +13,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class SmartMockGenerateStepConfiguration {
-
-    private final StepBuilderFactory stepBuilderFactory;
-
-    @Bean
-    public Step smartMockGenerateStep(@Qualifier("buildPagingItemReader") JdbcPagingItemReader<Person> pagingItemReader,
-                                      @Qualifier("buildSmartMockWriter") FlatFileItemWriter<Person> writer) {
-        return stepBuilderFactory.get("smart-generate")
-                .<Person, Person>chunk(1)
-                .reader(pagingItemReader)
-                .writer(writer)
-                .faultTolerant()
-                .skipLimit(3)
-                .skip(Exception.class)
-                .build();
-    }
+	
+	private final StepBuilderFactory stepBuilderFactory;
+	
+	@Bean
+	public Step smartMockGenerateStep(@Qualifier("buildPagingItemReader") JdbcPagingItemReader<Person> pagingItemReader,
+									  @Qualifier("buildSmartMockWriter") FlatFileItemWriter<Person> writer) {
+		return stepBuilderFactory.get("smart-generate")
+				.<Person, Person>chunk(1)
+				.reader(pagingItemReader)
+				.writer(writer)
+				.faultTolerant()
+				.skipLimit(3)
+				.skip(Exception.class)
+				.build();
+	}
 }

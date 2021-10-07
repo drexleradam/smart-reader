@@ -11,11 +11,11 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class SmartPersonWriter implements ItemWriter<Person> {
-
-    private final PersonRepository personRepository;
-
-    @Override
-    public void write(List<? extends Person> list) {
-        list.forEach(personRepository::save);
-    }
+	
+	private final PersonRepository personRepository;
+	
+	@Override
+	public void write(List<? extends Person> list) {
+		list.forEach(personRepository::save);
+	}
 }

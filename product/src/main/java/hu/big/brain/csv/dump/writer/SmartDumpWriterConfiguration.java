@@ -11,19 +11,19 @@ import org.springframework.core.io.FileSystemResource;
 
 @Configuration
 public class SmartDumpWriterConfiguration {
-
-    @Value("${dump-data-file-name}")
-    private String fileName;
-
-    @Bean
-    public FlatFileItemWriter<Person> buildSmartDumpWriter() {
-        return new FlatFileItemWriterBuilder<Person>()
-                .name("smart-dump-csv-writer")
-                .resource(new FileSystemResource(fileName))
-                .delimited()
-                .delimiter(DelimitedLineTokenizer.DELIMITER_TAB)
-                .names("firstName", "lastName", "age")
-                .build();
-    }
-
+	
+	@Value("${dump-data-file-name}")
+	private String fileName;
+	
+	@Bean
+	public FlatFileItemWriter<Person> buildSmartDumpWriter() {
+		return new FlatFileItemWriterBuilder<Person>()
+				.name("smart-dump-csv-writer")
+				.resource(new FileSystemResource(fileName))
+				.delimited()
+				.delimiter(DelimitedLineTokenizer.DELIMITER_TAB)
+				.names("firstName", "lastName", "age")
+				.build();
+	}
+	
 }

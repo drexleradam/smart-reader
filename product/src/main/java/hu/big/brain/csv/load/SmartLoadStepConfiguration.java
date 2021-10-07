@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class SmartLoadStepConfiguration {
-
-    private final StepBuilderFactory stepBuilderFactory;
-
-    @Bean
-    public Step smartLoadStep(SmartLoadTasklet smartLoadTasklet) {
-        return stepBuilderFactory
-                .get("smart-load")
-                .tasklet(smartLoadTasklet)
-                .build();
-    }
+	
+	private final StepBuilderFactory stepBuilderFactory;
+	
+	@Bean
+	public Step smartLoadStep(SmartLoadTasklet smartLoadTasklet) {
+		return stepBuilderFactory
+				.get("smart-load")
+				.tasklet(smartLoadTasklet)
+				.build();
+	}
 }

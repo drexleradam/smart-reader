@@ -40,72 +40,72 @@ import static org.springframework.batch.test.AssertFile.assertFileEquals;
 @ContextConfiguration(classes = {SmartReaderApplication.class, SmartReaderJobConfiguration.class, PrimaryDataSourceConfiguration.class, DumpDataSourceConfiguration.class}, initializers = ConfigDataApplicationContextInitializer.class)
 @TestExecutionListeners(DependencyInjectionTestExecutionListener.class)
 public class SmartApplicationIntegrationTest {
-
-    @Autowired
-    private JobLauncherTestUtils jobLauncherTestUtils;
-    @Autowired
-    private IntegrationTestRepository integrationTestRepository;
-
-    private JobExecution jobExecution;
-
-    @Value("${dump-data-file-name}")
-    private String dumpDataFileName;
-
-    @Value("${fileName}")
-    private String mockDataFileName;
-
-    @Test
-    public void test() throws Exception {
-        runApplication();
-        testSmartPersonTableCount();
-        testSmartMockDataTableCount();
-        testSmartListingStatusTable();
-        testSmartMarketplaceTable();
-        compareFiles("dump_data_test.csv", dumpDataFileName);
-        compareFiles("mock_data_test.csv", mockDataFileName);
-        compareFiles("ftp_dump_test.txt", getFtpDumpFilePath());
-    }
-
-    private String getFtpDumpFilePath() {
-        return jobExecution
-                .getExecutionContext()
-                .getString("fileName");
-    }
-
-    private void compareFiles(String expected, String actual) throws Exception {
-        assertFileEquals(new ClassPathResource(expected), new PathResource(actual));
-    }
-
-    private void testSmartMarketplaceTable() {
-        List<Marketplace> marketplaces = integrationTestRepository.getMarketplaces();
-        List<Marketplace> marketplaceStubs = MarketplaceStub.getMarketplaceStubs();
-        log.info(Arrays.toString(marketplaces.toArray()));
-        log.info(Arrays.toString(marketplaceStubs.toArray()));
-        assertTrue(CollectionUtils.isEqualCollection(marketplaces, marketplaceStubs));
-    }
-
-    private void testSmartListingStatusTable() {
-        List<ListingStatus> listingStatuses = integrationTestRepository.getListingStatuses();
-        List<ListingStatus> listingStatusStubs = ListingStatusStub.getListingStatusStubs();
-        log.info(Arrays.toString(listingStatuses.toArray()));
-        log.info(Arrays.toString(listingStatusStubs.toArray()));
-        assertTrue(CollectionUtils.isEqualCollection(listingStatuses, listingStatusStubs));
-    }
-
-    private void testSmartMockDataTableCount() {
-        assertEquals(30, integrationTestRepository.getSmartMockDataCount());
-    }
-
-    private void testSmartPersonTableCount() {
-        assertEquals(30, integrationTestRepository.getSmartPersonCount());
-    }
-
-    private void runApplication() throws Exception {
-        JobParameters jobParameters = jobLauncherTestUtils.getUniqueJobParameters();
-        jobExecution = jobLauncherTestUtils.launchJob(jobParameters);
-
-        assertEquals(BatchStatus.COMPLETED, jobExecution.getStatus());
-        assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
-    }
-
+	
+	@Autowired
+	private JobLauncherTestUtils jobLauncherTestUtils;
+	@Autowired
+	private IntegrationTestRepository integrationTestRepository;
+	
+	private JobExecution jobExecution;
+	
+	@Value("${dump-data-file-name}")
+	private String dumpDataFileName;
+	
+	@Value("${fileName}")
+	private String mockDataFileName;
+	
+	@Test
+	public void test() throws Exception {
+		runApplication();
+		testSmartPersonTableCount();
+		testSmartMockDataTableCount();
+		testSmartListingStatusTable();
+		testSmartMarketplaceTable();
+		compareFiles("dump_data_test.csv", dumpDataFileName);
+		compareFiles("mock_data_test.csv", mockDataFileName);
+		compareFiles("ftp_dump_test.txt", getFtpDumpFilePath());
+	}
+	
+	private String getFtpDumpFilePath() {
+		return jobExecution
+				.getExecutionContext()
+				.getString("fileName");
+	}
+	
+	private void compareFiles(String expected, String actual) throws Exception {
+		assertFileEquals(new ClassPathResource(expected), new PathResource(actual));
+	}
+	
+	private void testSmartMarketplaceTable() {
+		List<Marketplace> marketplaces = integrationTestRepository.getMarketplaces();
+		List<Marketplace> marketplaceStubs = MarketplaceStub.getMarketplaceStubs();
+		log.info(Arrays.toString(marketplaces.toArray()));
+		log.info(Arrays.toString(marketplaceStubs.toArray()));
+		assertTrue(CollectionUtils.isEqualCollection(marketplaces, marketplaceStubs));
+	}
+	
+	private void testSmartListingStatusTable() {
+		List<ListingStatus> listingStatuses = integrationTestRepository.getListingStatuses();
+		List<ListingStatus> listingStatusStubs = ListingStatusStub.getListingStatusStubs();
+		log.info(Arrays.toString(listingStatuses.toArray()));
+		log.info(Arrays.toString(listingStatusStubs.toArray()));
+		assertTrue(CollectionUtils.isEqualCollection(listingStatuses, listingStatusStubs));
+	}
+	
+	private void testSmartMockDataTableCount() {
+		assertEquals(30, integrationTestRepository.getSmartMockDataCount());
+	}
+	
+	private void testSmartPersonTableCount() {
+		assertEquals(30, integrationTestRepository.getSmartPersonCount());
+	}
+	
+	private void runApplication() throws Exception {
+		JobParameters jobParameters = jobLauncherTestUtils.getUniqueJobParameters();
+		jobExecution = jobLauncherTestUtils.launchJob(jobParameters);
+		
+		assertEquals(BatchStatus.COMPLETED, jobExecution.getStatus());
+		assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
+	}
+	
 }

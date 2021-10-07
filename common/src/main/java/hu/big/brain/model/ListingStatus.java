@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ListingStatus {
-    private int id;
-    @JsonAlias("status_name")
-    private String name;
+	private int id;
+	@JsonAlias("status_name")
+	private String name;
 }

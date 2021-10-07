@@ -8,15 +8,15 @@ import java.sql.PreparedStatement;
 
 @Repository
 public class DumpForFtpRepository {
-
-    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
-    public DumpForFtpRepository(@Qualifier("dumpNamedParameterJdbcTemplate") NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-    }
-
-    public void makeDump(String fileName) {
-        namedParameterJdbcTemplate.execute("copy smart_remote_data to '/tmp/" + fileName + "'", PreparedStatement::execute);
-    }
-
+	
+	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	
+	public DumpForFtpRepository(@Qualifier("dumpNamedParameterJdbcTemplate") NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+	}
+	
+	public void makeDump(String fileName) {
+		namedParameterJdbcTemplate.execute("copy smart_remote_data to '/tmp/" + fileName + "'", PreparedStatement::execute);
+	}
+	
 }

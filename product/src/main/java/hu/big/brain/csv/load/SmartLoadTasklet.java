@@ -13,13 +13,13 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class SmartLoadTasklet implements Tasklet {
-
-    private final SmartLoadRepository smartLoadRepository;
-
-    @Override
-    public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) {
-        log.info("Loading dump into table");
-        smartLoadRepository.loadDumpIntoTable();
-        return RepeatStatus.FINISHED;
-    }
+	
+	private final SmartLoadRepository smartLoadRepository;
+	
+	@Override
+	public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) {
+		log.info("Loading dump into table");
+		smartLoadRepository.loadDumpIntoTable();
+		return RepeatStatus.FINISHED;
+	}
 }
